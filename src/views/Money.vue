@@ -1,29 +1,11 @@
 <template>
-  <div>
-    <div class="nav-wrapper">
-      <div class="content">
-        <p>Money.vue</p>
-      </div>
-      <Nav />
-    </div>
-  </div>
+  <Layout> Money.vue </Layout>
 </template>
 
 <script>
+import Layout from "@/components/Layout.vue";
 export default {
+  components: { Layout },
   name: "Money",
 };
 </script>
-
-<style lang="scss" scoped>
-.nav-wrapper {
-  border: 1px solid blue;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-.content {
-  flex-grow: 1; //尽量把所有的高度都给content
-  overflow: auto;
-}
-</style>
