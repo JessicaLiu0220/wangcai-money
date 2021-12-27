@@ -1,10 +1,11 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <!-- 当在哪个组件的路径时就显示哪个组件的内容 -->
+    <router-view />
+    <hr />
+    <router-link to="/labels">L标签</router-link>/
+    <router-link to="/money">M记账</router-link>/
+    <router-link to="/statistics">S统计</router-link>
   </div>
 </template>
 
