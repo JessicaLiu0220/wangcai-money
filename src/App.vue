@@ -1,12 +1,16 @@
 <template>
   <div>
     <!-- 当在哪个组件的路径时就显示哪个组件的内容 -->
-
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
