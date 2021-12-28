@@ -1,22 +1,27 @@
 <template>
-  <div>
+  <div id="app">
     <!-- 当在哪个组件的路径时就显示哪个组件的内容 -->
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import "~@/assets/style/helper.scss";
 * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: "#ffffff";
+  line-height: 1.5;
+  font-family: $font-hei;
 }
 
 #nav {
