@@ -7,33 +7,13 @@
 
 <style lang="scss">
 @import "~@/assets/style/helper.scss";
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-#app {
+@import "~@/assets/style/reset.scss";
+body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: "#ffffff";
   line-height: 1.5;
   font-family: $font-hei;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  font-size: 16px;
 }
 </style>
