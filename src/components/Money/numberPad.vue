@@ -21,7 +21,7 @@
 
 <script lang="ts">
 export default {
-  name: "numberPad",
+  name: "NumberPad",
 };
 </script>
 
