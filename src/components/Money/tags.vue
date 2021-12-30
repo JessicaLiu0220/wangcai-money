@@ -1,15 +1,14 @@
 <template>
   <div class="tags">
     <ul class="current">
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
-      <li>行</li>
+      <li
+        v-for="tag in dataSource"
+        :key="tag"
+        :class="{ selected: selectedTags.indexOf(tag) >= 0 }"
+        @click="select(tag)"
+      >
+        {{ tag }}
+      </li>
       <li class="add">+</li>
     </ul>
     <!-- <div class="new">
@@ -20,9 +19,22 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "Tags",
-};
+import Vue from "vue";
+import { Component, Prop } from "vue-property-decorator";
+@Component
+export default class Tags extends Vue {
+  @Prop() dataSource: string[] | undefined; //声明一个字符串数组，只能装字符串
+  selectedTags: string[] = [];
+
+  select(tag: string) {
+    const index = this.selectedTags.indexOf(tag);
+    if (index >= 0) {
+      this.selectedTags.splice(index, 1);
+    } else {
+      this.selectedTags.push(tag);
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -43,6 +55,9 @@ export default {
       text-align: center;
       line-height: 60px;
       margin: 10px 20px 10px 10px;
+      &.selected {
+        background: $color-highlight;
+      }
     }
     > .add {
       font-size: 24px;
