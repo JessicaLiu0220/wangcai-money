@@ -5,11 +5,11 @@
         v-for="tag in dataSource"
         :key="tag"
         :class="{ selected: selectedTags.indexOf(tag) >= 0 }"
-        @click="select(tag)"
+        @click="toggle(tag)"
       >
         {{ tag }}
       </li>
-      <li class="add">+</li>
+      <li class="add" @click="newTag">+</li>
     </ul>
     <!-- <div class="new">
         <button>添加标签</button>
@@ -26,13 +26,20 @@ export default class Tags extends Vue {
   @Prop() dataSource: string[] | undefined; //声明一个字符串数组，只能装字符串
   selectedTags: string[] = [];
 
-  select(tag: string) {
+  toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {
       this.selectedTags.splice(index, 1);
     } else {
       this.selectedTags.push(tag);
     }
+  }
+  newTag(add: string) {
+    const name = window.prompt("请输入标签名");
+    if (name === "") {
+      window.alert("标签名不能为空");
+    } else if (this.dataSource)
+      this.$emit("update:dataSource", [...this.dataSource, name]);
   }
 }
 </script>
