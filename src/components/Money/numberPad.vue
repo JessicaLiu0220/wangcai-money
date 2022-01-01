@@ -5,24 +5,24 @@
         <span class="name">备注：</span>
         <input type="text" v-model="value" placeholder="请输入需要备注的内容" />
       </label>
-      <div class="output">1.00</div>
+      <div class="output">{{ output }}</div>
     </div>
     <div class="numberPad">
       <div class="buttons clearfix">
-        <button class="item" active-class="selected">1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>删除</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>清除</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button class="ok">OK</button>
-        <button>.</button>
-        <button class="zero">0</button>
+        <button @click="outputNumber">1</button>
+        <button @click="outputNumber">2</button>
+        <button @click="outputNumber">3</button>
+        <button @click="remove"><Icon name="remove" /></button>
+        <button @click="outputNumber">4</button>
+        <button @click="outputNumber">5</button>
+        <button @click="outputNumber">6</button>
+        <button @click="clear">清除</button>
+        <button @click="outputNumber">7</button>
+        <button @click="outputNumber">8</button>
+        <button @click="outputNumber">9</button>
+        <button @click="ok" class="ok">OK</button>
+        <button @click="outputNumber">.</button>
+        <button @click="outputNumber" class="zero">0</button>
       </div>
     </div>
   </div>
@@ -34,6 +34,37 @@ import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class NumberPad extends Vue {
   value = "";
+  output = "0";
+  outputNumber(event: MouseEvent) {
+    const button = event.target as HTMLButtonElement;
+    const input = button.textContent!;
+    if (this.output.length >= 16) {
+      return;
+    }
+    if (this.output === "0") {
+      if ("0123456789".indexOf(input) >= 0) {
+        this.output = input;
+        return;
+      } else {
+        this.output += input;
+      }
+      return;
+    }
+    if (this.output.indexOf(".") >= 0 && input === ".") {
+      return;
+    }
+    this.output += input;
+  }
+  remove() {
+    if (this.output.length === 1) {
+      this.output = "0";
+    } else {
+      this.output = this.output.slice(0, -1);
+    }
+  }
+  clear() {
+    this.output = "0";
+  }
 }
 </script>
 
@@ -81,6 +112,10 @@ export default class NumberPad extends Vue {
       }
       &.zero {
         width: 50%;
+      }
+      .icon {
+        width: 24px;
+        height: 24px;
       }
     }
   }
