@@ -30,10 +30,14 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class NumberPad extends Vue {
   value = "";
+  @Watch("value")
+  onValueChange(newValue: string) {
+    this.$emit("update:value", newValue);
+  }
   output = "0";
   outputNumber(event: MouseEvent) {
     const button = event.target as HTMLButtonElement;
@@ -64,6 +68,9 @@ export default class NumberPad extends Vue {
   }
   clear() {
     this.output = "0";
+  }
+  ok() {
+    this.$emit("update:output", this.output);
   }
 }
 </script>
