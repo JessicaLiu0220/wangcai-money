@@ -17,7 +17,8 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
   },
   "globals": {  //与上方的rules是同级的
-    "__WebpackModuleApi": true
+    "__WebpackModuleApi": true,
+    "RecordItem": true
   },
   overrides: [
     {
