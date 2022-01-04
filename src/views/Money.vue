@@ -1,7 +1,6 @@
 <template>
   <Layout class-prefix="layout">
     <Types @update:value="onUpdateType" />
-    {{ recordList }}
     <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
     <Number-pad
       @update:value="onUpdateNotes"
