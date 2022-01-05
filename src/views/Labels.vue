@@ -1,33 +1,41 @@
 <template>
   <Layout>
     <ol class="tags">
-      <li>
-        <span>衣</span>
-        <Icon name="right" />
-      </li>
-      <li>
-        <span>食</span>
-        <Icon name="right" />
-      </li>
-      <li>
-        <span>住</span>
-        <Icon name="right" />
-      </li>
-      <li>
-        <span>行</span>
+      <li v-for="tag in tags" :key="tag">
+        <span>{{ tag }}</span>
         <Icon name="right" />
       </li>
     </ol>
     <div class="createTag-wrapper">
-      <button class="createTag"><Icon name="add" />添加类别</button>
+      <button class="createTag" @click="createTag">
+        <Icon name="add" />添加类别
+      </button>
     </div>
   </Layout>
 </template>
 
-<script>
-export default {
-  name: "Labels",
-};
+<script lang="ts">
+import { tagListModel } from "@/models/tagListModel";
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+tagListModel.fetch();
+@Component
+export default class Types extends Vue {
+  tags = tagListModel.data;
+
+  createTag() {
+    const name = window.prompt("请输入新的类别名：");
+    if (name) {
+      const message = tagListModel.create(name);
+      if (message === "duplicated") {
+        window.alert("该类名已经存在");
+      }
+      // } else if (message === "success") {
+      //   window.alert("类名添加成功");
+      // }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -46,13 +54,15 @@ export default {
     border-bottom: 1px solid $color-shadow;
     justify-content: space-between;
     align-items: center;
+    // background: $color-shadow;
     > span {
-      background: $color-shadow;
       height: 44px;
-      width: 44px;
-      border-radius: 50%;
+      min-width: 44px;
+      background: $color-highlight;
+      border-radius: 10px;
       text-align: center;
       line-height: 44px;
+      padding: 0px 5px;
     }
     > .icon {
       width: 20px;
