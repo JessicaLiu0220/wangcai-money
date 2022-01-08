@@ -1,11 +1,16 @@
 <template>
   <Layout>
-    <ol class="tags">
-      <li v-for="tag in tags" :key="tag.id">
+    <div class="tags">
+      <router-link
+        class="tag"
+        v-for="tag in tags"
+        :key="tag.id"
+        :to="`/labels/edit/${tag.id}`"
+      >
         <span>{{ tag.name }}</span>
         <Icon name="right" />
-      </li>
-    </ol>
+      </router-link>
+    </div>
     <div class="createTag-wrapper">
       <button class="createTag" @click="createTag">
         <Icon name="add" />添加类别
@@ -46,7 +51,7 @@ export default class Types extends Vue {
 .tags {
   font-size: 16px;
   // margin-left: 5px;
-  > li {
+  > .tag {
     // border: 1px solid red;
     display: flex;
     padding: 5px 15px 5px 5px;

@@ -19,12 +19,13 @@ import NumberPad from "@/components/Money/NumberPad.vue";
 import { Component, Watch } from "vue-property-decorator";
 import { recordListModel } from "@/models/recordListModel";
 import { tagListModel } from "@/models/tagListModel";
+import EditLabel from "./EditLabel.vue";
 
 const recordList = recordListModel.fetch();
 const tagList = tagListModel.fetch();
 
 @Component({
-  components: { Layout, Types, Tags, NumberPad },
+  components: { Layout, Types, Tags, NumberPad, EditLabel },
 })
 export default class Money extends Vue {
   tags = tagList;
