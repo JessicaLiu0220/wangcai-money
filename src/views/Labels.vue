@@ -12,9 +12,9 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <button class="createTag" @click="createTag">
+      <Button class="createTag" @click="createTag">
         <Icon name="add" />添加类别
-      </button>
+      </Button>
     </div>
   </Layout>
 </template>
@@ -23,6 +23,8 @@
 import { tagListModel } from "@/models/tagListModel";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import Button from "@/components/Button.vue";
+
 tagListModel.fetch();
 @Component
 export default class Types extends Vue {
