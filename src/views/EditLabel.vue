@@ -6,40 +6,19 @@
       <span class="rightIcon"></span>
     </div>
     <div class="remarks">
-      <label class="notes">
-        <span class="name">备注：</span>
+      <label class="notes" @update:value="updateTag">
+        <span class="name">类别名称：</span>
         <input
           type="text"
           :value="tag.name"
           @input="onValueChange($event.target.value)"
-          placeholder="请输入需要备注的内容"
+          placeholder="请输入新的标签名"
         />
       </label>
-      <div class="output">{{ output }}</div>
-    </div>
-    <!-- 新写法
-    html的部分：
-    <div class="remarks">
-      <label class="notes">
-        <span class="name">备注：</span>
-        <input
-          type="text"
-          :value="value"
-          @change="onValueChange"
-          placeholder="请输入需要备注的内容"
-        />
-      </label>
-      <div class="output">{{ output }}</div>
     </div>
 
-    ts的部分：
-    @Prop() value!: string;
-    onValueChange(newValue: string) {
-    this.$emit("update:value", newValue);
-  }
-     -->
     <div class="createTag-wrapper">
-      <Button class="createTag" @click="createTag"> 删除类别 </Button>
+      <button class="createTag">删除类别</button>
     </div>
   </layout>
 </template>
@@ -47,11 +26,11 @@
 <script lang="ts">
 import Vue from "vue";
 import { tagListModel } from "@/models/tagListModel";
-import NumberPad from "@/components/Money/NumberPad.vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class EditLabel extends Vue {
   tag?: { id: string; name: string } = undefined;
+
   @Prop() value!: string;
   onValueChange(newValue: string) {
     this.$emit("update:value", newValue);
@@ -65,6 +44,12 @@ export default class EditLabel extends Vue {
       this.tag = tag;
     } else {
       this.$router.replace("/404");
+    }
+  }
+  updateTag(name: string) {
+    console.log(name);
+    if (this.tag) {
+      tagListModel.update(this.tag.id, name);
     }
   }
 }
