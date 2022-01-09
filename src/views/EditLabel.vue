@@ -6,7 +6,7 @@
       <span class="rightIcon"></span>
     </div>
     <div class="remarks">
-      <label class="notes" @update:value="updateTag">
+      <label class="notes">
         <span class="name">类别名称：</span>
         <input
           type="text"
@@ -34,6 +34,7 @@ export default class EditLabel extends Vue {
   @Prop() value!: string;
   onValueChange(newValue: string) {
     this.$emit("update:value", newValue);
+    console.log(newValue);
   }
   created() {
     const id = this.$route.params.id;
