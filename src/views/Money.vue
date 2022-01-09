@@ -2,12 +2,14 @@
   <Layout class-prefix="layout">
     <Types @update:value="onUpdateType" />
     <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
+
     <Number-pad
       :value="record.notes"
       @update:value="onUpdateNotes"
       @update:output="onUpdateAmount"
       @submit="saveRecord"
     />
+    {{ record }}
   </Layout>
 </template>
 

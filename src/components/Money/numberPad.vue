@@ -6,7 +6,7 @@
         <input
           type="text"
           :value="value"
-          @change="onValueChange"
+          @input="onValueChange($event.target.value)"
           placeholder="请输入需要备注的内容"
         />
       </label>
