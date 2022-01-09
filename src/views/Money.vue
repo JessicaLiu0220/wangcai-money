@@ -30,7 +30,7 @@ const tagList = tagListModel.fetch();
 export default class Money extends Vue {
   tags = tagList;
   recordList: RecordItem[] = JSON.parse(
-    window.localStorage.getItem("recordList") || ""
+    window.localStorage.getItem("recordList") || "[]"
   );
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
   onUpdateTags(value: string[]) {

@@ -3,7 +3,12 @@
     <div class="remarks">
       <label class="notes">
         <span class="name">备注：</span>
-        <input type="text" v-model="value" placeholder="请输入需要备注的内容" />
+        <input
+          type="text"
+          :value="value"
+          @change="onValueChange"
+          placeholder="请输入需要备注的内容"
+        />
       </label>
       <div class="output">{{ output }}</div>
     </div>
@@ -33,12 +38,11 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class NumberPad extends Vue {
-  value = "";
-  @Watch("value")
+  @Prop() value!: string;
+  output = "0";
   onValueChange(newValue: string) {
     this.$emit("update:value", newValue);
   }
-  output = "0";
   outputNumber(event: MouseEvent) {
     const button = event.target as HTMLButtonElement;
     const input = button.textContent!;

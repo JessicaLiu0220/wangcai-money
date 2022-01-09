@@ -12,6 +12,27 @@
       </label>
       <div class="output">{{ output }}</div>
     </div>
+    <!-- 新写法
+    html的部分：
+    <div class="remarks">
+      <label class="notes">
+        <span class="name">备注：</span>
+        <input
+          type="text"
+          :value="value"
+          @change="onValueChange"
+          placeholder="请输入需要备注的内容"
+        />
+      </label>
+      <div class="output">{{ output }}</div>
+    </div>
+
+    ts的部分：
+    @Prop() value!: string;
+    onValueChange(newValue: string) {
+    this.$emit("update:value", newValue);
+  }
+     -->
     <div class="createTag-wrapper">
       <Button class="createTag" @click="createTag"> 删除类别 </Button>
     </div>
