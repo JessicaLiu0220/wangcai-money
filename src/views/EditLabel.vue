@@ -5,10 +5,15 @@
       <span class="title">编辑类别</span>
       <span class="rightIcon"></span>
     </div>
-    <div class="remarks" @update:value="onUpdateNotes">
+    <div class="remarks">
       <label class="notes">
-        <span class="name">标签：</span>
-        <input type="text" v-model="value" placeholder="请输入新的标签名" />
+        <span class="name">备注：</span>
+        <input
+          type="text"
+          :value="tag.name"
+          @input="onValueChange($event.target.value)"
+          placeholder="请输入需要备注的内容"
+        />
       </label>
       <div class="output">{{ output }}</div>
     </div>
@@ -42,13 +47,12 @@
 <script lang="ts">
 import Vue from "vue";
 import { tagListModel } from "@/models/tagListModel";
-import Money from "Money.vue";
-
+import NumberPad from "@/components/Money/NumberPad.vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class EditLabel extends Vue {
-  value = "";
-  @Watch("value")
+  tag?: { id: string; name: string } = undefined;
+  @Prop() value!: string;
   onValueChange(newValue: string) {
     this.$emit("update:value", newValue);
   }
@@ -58,7 +62,7 @@ export default class EditLabel extends Vue {
     const tags = tagListModel.data;
     const tag = tags.filter((t) => t.id === id)[0];
     if (tag) {
-      console.log(tag);
+      this.tag = tag;
     } else {
       this.$router.replace("/404");
     }
