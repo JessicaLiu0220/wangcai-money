@@ -1,5 +1,11 @@
 <template>
   <Layout>
+    <div class="createTag-wrapper">
+      <Button class="createTag" @click="createTag">
+        <Icon name="add" />添加类别
+      </Button>
+      <div class="heixian"></div>
+    </div>
     <div class="tags">
       <router-link
         class="tag"
@@ -11,11 +17,6 @@
         <Icon name="right" />
       </router-link>
     </div>
-    <div class="createTag-wrapper">
-      <Button class="createTag" @click="createTag">
-        <Icon name="add" />添加类别
-      </Button>
-    </div>
   </Layout>
 </template>
 
@@ -25,10 +26,9 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import Button from "@/components/Button.vue";
 
-tagListModel.fetch();
 @Component
 export default class Types extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList;
 
   createTag() {
     const name = window.prompt("请输入新的类别名：");
@@ -52,20 +52,19 @@ export default class Types extends Vue {
 }
 .tags {
   font-size: 16px;
-  // margin-left: 5px;
+  margin-left: 5px;
+
   > .tag {
-    // border: 1px solid red;
     display: flex;
-    padding: 5px 15px 5px 5px;
-    // border-top: 1px solid $color-shadow;
+    padding: 10px 15px 10px 5px;
     border-bottom: 1px solid $color-shadow;
     justify-content: space-between;
     align-items: center;
-    // background: $color-shadow;
     > span {
       height: 44px;
       min-width: 44px;
-      background: $color-highlight;
+      background: $color-shadow;
+      border: 0.1px solid $color-deep;
       border-radius: 10px;
       text-align: center;
       line-height: 44px;
@@ -78,15 +77,27 @@ export default class Types extends Vue {
   }
 }
 .createTag-wrapper {
-  text-align: center;
-  padding: 24px;
+  width: 100%;
+  height: 64px;
+  text-align: 64px;
+  background: $color-highlight;
+  display: flex;
+  justify-content: center;
+  position: relative;
   > .createTag {
-    font-size: 16px;
-    background: $color-shadow;
+    font-size: 24px;
+    background: $color-highlight;
     border: none;
-    border: 0.5px solid #404040;
-    border-radius: 5px;
-    padding: 5px 16px;
+    position: relative;
+  }
+  > .heixian {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 4px;
+    background-color: #555555;
   }
 }
 </style>>

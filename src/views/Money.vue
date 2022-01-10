@@ -25,13 +25,12 @@ import { tagListModel } from "@/models/tagListModel";
 import EditLabel from "./EditLabel.vue";
 
 const recordList = recordListModel.fetch();
-const tagList = tagListModel.fetch();
 
 @Component({
   components: { Layout, Types, Tags, NumberPad, EditLabel },
 })
 export default class Money extends Vue {
-  tags = tagList;
+  tags = window.tagList;
   recordList: RecordItem[] = JSON.parse(
     window.localStorage.getItem("recordList") || "[]"
   );
