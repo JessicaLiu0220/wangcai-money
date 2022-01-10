@@ -25,7 +25,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { tagListModel } from "@/models/tagListModel";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
 export default class EditLabel extends Vue {
@@ -34,16 +33,13 @@ export default class EditLabel extends Vue {
   @Prop() value!: string;
   onValueChange(newValue: string) {
     this.$emit("update:value", newValue);
-    console.log(newValue);
     if (this.tag) {
-      tagListModel.update(this.tag.id, newValue);
+      window.updateTag(this.tag.id, newValue);
     }
   }
   created() {
     const id = this.$route.params.id;
-    tagListModel.fetch();
-    const tags = tagListModel.data;
-    const tag = tags.filter((t) => t.id === id)[0];
+    const tag = window.findTag(id);
     if (tag) {
       this.tag = tag;
     } else {
@@ -52,10 +48,10 @@ export default class EditLabel extends Vue {
   }
   remove() {
     if (this.tag) {
-      if (tagListModel.remove(this.tag.id)) {
+      if (window.removeTag(this.tag.id)) {
         this.$router.back();
       } else {
-        alert("删除失败");
+        window.alert("删除失败");
       }
     }
   }
