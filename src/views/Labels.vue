@@ -34,10 +34,7 @@ export default class Types extends Vue {
   createTag() {
     const name = window.prompt("请输入新的类别名：");
     if (name) {
-      const message = tagListModel.create(name);
-      if (message === "duplicated") {
-        window.alert("该类名已经存在");
-      }
+      window.createTag(name);
       // } else if (message === "success") {
       //   window.alert("类名添加成功");
       // }
