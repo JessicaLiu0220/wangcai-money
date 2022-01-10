@@ -8,6 +8,7 @@ type TagListModel = {
     fetch: () => Tag[]
     create: (number: string) => 'success' | 'duplicated'//success表示成功，duplicated表示失败
     update: (id: string, number: string) => 'success' | 'duplicated' | 'not found'
+    remove: (id: string) => boolean
     save: () => void
 
 }
@@ -36,12 +37,26 @@ const tagListModel: TagListModel = {
             } else {
                 const tag = this.data.filter(item => item.id === id)[0]
                 tag.name = name;
+                // tag.id = name;
                 this.save()
                 return 'success'
             }
         } else {
             return 'not found'
         }
+    },
+    //删除数据
+    remove(id: string) {
+        let index = -1;
+        for (let i = 0; i < this.data.length; i++) {
+            if (this.data[i].id === id) {
+                index = i;
+                break
+            }
+        }
+        this.data.splice(index, 1)
+        this.save()
+        return true
     },
     //保存数据
     save() {

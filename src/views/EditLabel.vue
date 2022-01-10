@@ -1,7 +1,7 @@
 <template>
   <layout>
     <div class="navBar">
-      <Icon class="leftIcon" name="left" />
+      <Icon class="leftIcon" name="left" @click.native="goBack" />
       <span class="title">编辑类别</span>
       <span class="rightIcon"></span>
     </div>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="createTag-wrapper">
-      <button class="createTag">删除类别</button>
+      <button class="createTag" @click="remove">删除类别</button>
     </div>
   </layout>
 </template>
@@ -35,6 +35,9 @@ export default class EditLabel extends Vue {
   onValueChange(newValue: string) {
     this.$emit("update:value", newValue);
     console.log(newValue);
+    if (this.tag) {
+      tagListModel.update(this.tag.id, newValue);
+    }
   }
   created() {
     const id = this.$route.params.id;
@@ -47,11 +50,13 @@ export default class EditLabel extends Vue {
       this.$router.replace("/404");
     }
   }
-  updateTag(name: string) {
-    console.log(name);
+  remove() {
     if (this.tag) {
-      tagListModel.update(this.tag.id, name);
+      tagListModel.remove(this.tag.id);
     }
+  }
+  goBack() {
+    this.$router.back();
   }
 }
 </script>
