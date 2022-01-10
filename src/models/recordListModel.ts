@@ -13,7 +13,7 @@ const recordListModel = {
         return this.data
     },
     //保存数据
-    save(data: RecordItem[]) {
+    save() {
         window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
 
     }

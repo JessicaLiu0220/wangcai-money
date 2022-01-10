@@ -27,10 +27,9 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import Button from "@/components/Button.vue";
 
-tagListModel.fetch();
 @Component
 export default class Types extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList;
 
   createTag() {
     const name = window.prompt("请输入新的类别名：");
