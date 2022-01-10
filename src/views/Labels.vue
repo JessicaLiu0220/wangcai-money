@@ -4,7 +4,7 @@
       <Button class="createTag" @click="createTag">
         <Icon name="add" />添加类别
       </Button>
-      <div class="heixian"></div>
+      <div class="line"></div>
     </div>
     <div class="tags">
       <router-link
@@ -90,7 +90,7 @@ export default class Types extends Vue {
     border: none;
     position: relative;
   }
-  > .heixian {
+  > .line {
     content: "";
     position: absolute;
     left: 0px;
