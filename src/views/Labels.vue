@@ -22,17 +22,18 @@
 </template>
 
 <script lang="ts">
+import store from "@/store/index2";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 
 @Component
 export default class Types extends Vue {
-  tags = window.tagList;
+  tags = store.tagList;
 
   createTag() {
     const name = window.prompt("请输入新的类别名：");
     if (name) {
-      window.createTag(name);
+      store.createTag(name);
       // } else if (message === "success") {
       //   window.alert("类名添加成功");
       // }

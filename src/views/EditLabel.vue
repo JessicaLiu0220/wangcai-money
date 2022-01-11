@@ -24,6 +24,7 @@
 </template>
 
 <script lang="ts">
+import store from "@/store/index2";
 import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 @Component
@@ -34,12 +35,12 @@ export default class EditLabel extends Vue {
   onValueChange(newValue: string) {
     this.$emit("update:value", newValue);
     if (this.tag) {
-      window.updateTag(this.tag.id, newValue);
+      store.updateTag(this.tag.id, newValue);
     }
   }
   created() {
     const id = this.$route.params.id;
-    const tag = window.findTag(id);
+    const tag = store.findTag(id);
     if (tag) {
       this.tag = tag;
     } else {
@@ -48,7 +49,7 @@ export default class EditLabel extends Vue {
   }
   remove() {
     if (this.tag) {
-      if (window.removeTag(this.tag.id)) {
+      if (store.removeTag(this.tag.id)) {
         this.$router.back();
       } else {
         window.alert("删除失败");
