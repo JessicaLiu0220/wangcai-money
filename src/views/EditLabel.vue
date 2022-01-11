@@ -26,7 +26,7 @@
 <script lang="ts">
 import store from "@/store/index2";
 import Vue from "vue";
-import { Component, Prop, Watch } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class EditLabel extends Vue {
   tag?: { id: string; name: string } = undefined;
