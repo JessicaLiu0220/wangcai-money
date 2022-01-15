@@ -16,9 +16,9 @@
 <script lang="ts">
 import Vue from "vue";
 import Layout from "@/components/Layout.vue";
-import Types from "@/components/Money/types.vue";
-import Tags from "@/components/Money/tags.vue";
-import NumberPad from "@/components/Money/numberPad.vue";
+import Types from "@/components/Money/Types1.vue";
+import Tags from "@/components/Money/Tags1.vue";
+import NumberPad from "@/components/Money/NumberPad1.vue";
 import { Component } from "vue-property-decorator";
 import EditLabel from "./EditLabel.vue";
 import store from "@/store/index2";
